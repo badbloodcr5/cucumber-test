@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>vn.abt</groupId>
+    <artifactId>cucumber-framework</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+	</properties>
+    <build>
+    	<plugins>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-plugin</artifactId>
+			    <version>3.6.0</version>
+			</plugin>
+			
+			<!-- plugin auto generate runner files
+			<plugin>
+			    <groupId>com.github.temyers</groupId>
+			    <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+			    <version>5.0.0</version>
+			    <executions>
+			        <execution>
+			            <id>generateRunners</id>
+			            <phase>generate-test-sources</phase>
+			            <goals>
+			                <goal>generateRunners</goal>
+			            </goals>
+			            <configuration>
+			                <glue>stepDefinitions</glue>
+			                <featuresDirectory>src/test/resources/features</featuresDirectory>
+			                <outputDirectory>target/generated-test-sources</outputDirectory>
+			                <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+			                <parallelScheme>SCENARIO</parallelScheme>
+			                <useTestNG>false</useTestNG>
+			                <namingScheme>simple</namingScheme>
+			                <namingPattern>Parallel{c}</namingPattern>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			-->
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>3.0.0-M5</version>
+			    <configuration>
+			        <parallel>classes</parallel>
+			        <threadCount>8</threadCount>
+			        <includes>
+			            <include>**/ChromeRunner.java</include>
+			            <include>**/FirefoxRunner.java</include> 
+			        </includes>
+			    </configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+    <dependencies>
+		<!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.21.0</version>
+        </dependency>
+
+		<!-- Cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.14.0</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- WebDriverManager (auto setup ChromeDriver, etc.) -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.8.0</version>
+        </dependency>
+
+		<!-- Extent Report -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.1</version>
+        </dependency>
+
+		<!-- Log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies> 
+</project>
